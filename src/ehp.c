@@ -15,9 +15,9 @@ int main()
 	int n = 0;
     
     printf("Enter HP range to test: ");
-    scanf("%f", &max_hp);
+    scanf("%d", &max_hp);
     printf("Enter AR range to test: ");
-    scanf("%f", &max_ar);
+    scanf("%d", &max_ar);
 	printf("Generating a list of possible stat points...\n");
 	
 	for (int hp = 1; hp < max_hp; ++hp) {
@@ -37,10 +37,12 @@ int main()
 	coefficients = fit_function(points, n);
 	mse = calculate_mean_squared_error(coefficients, points, n);
 	
-	printf("done.\n")
+	printf("done.\n");
 	
 	printf("For the given range of possible HP and AR combinations:\n");
-	printf("\tMax HP: %.1f\n", max_stats.health);
+	printf("\n\tMax HP: %d\n\tMax AR: %d\n", max_hp, max_ar);
+	printf("\n\tFormula: %.1f * x * x + %.1f * x + %.1f * y * y + %.1f * y + %.1f * x * y + %.1f\n", coefficients.w1, coefficients.w2, coefficients.w3, coefficients.w4, coefficients.w5, coefficients.w6);
+	printf("\tMSE: %.5f", mse);
 	
     return 0;
 }
