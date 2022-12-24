@@ -16,12 +16,8 @@ typedef struct {
 	double z;
 } Point;
 
-double predict(Coefficients c, double x, double y);
-
 double calculate_mean_squared_error(Coefficients c, Point points[], int n);
 
-void adjust_coefficients_based_on_error(Coefficients *c, Point points[], int n);
-
-void fit_function();
+Coefficients fit_function(Point points[], int n);
 
 #endif

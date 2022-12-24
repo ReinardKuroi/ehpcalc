@@ -90,3 +90,15 @@ void adjust_coefficients_based_on_error(Coefficients *c, Point points[], int n) 
 	
 	return;
 }
+
+Coefficients fit_function(Point points[], int n) {
+	Coefficients coefficients;
+	double error;
+	
+	do {
+		error = calculate_mean_squared_error(coefficients, points, n);
+		adjust_coefficients_based_on_error(&coefficients, points, n);
+	} while (error > E);
+		
+	return coefficients;
+}
