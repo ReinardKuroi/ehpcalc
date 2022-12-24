@@ -32,12 +32,13 @@ int main()
 		}
 	}
 	
+	printf("done\n");
 	printf("Fitting a function using generated point list...");
 	
 	coefficients = fit_function(points, n);
 	mse = calculate_mean_squared_error(coefficients, points, n);
 	
-	printf("done.\n");
+	printf("done\n");
 	
 	printf("For the given range of possible HP and AR combinations:\n");
 	printf("\n\tMax HP: %d\n\tMax AR: %d\n", max_hp, max_ar);
