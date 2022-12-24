@@ -4,7 +4,7 @@
 #include "mlr.h"
 
 #define E 0.09
-#define LEARNING_RATE 0.0001
+#define LEARNING_RATE 0.01
 
 double predict(Coefficients c, double x, double y) {
 	return c.w1 * x * x + c.w2 * x + c.w3 * y * y + c.w4 * y + c.w5 * x * y + c.w6;
@@ -93,7 +93,7 @@ void adjust_coefficients_based_on_error(Coefficients *c, Point points[], int n) 
 }
 
 Coefficients fit_function(Point points[], int n) {
-	Coefficients coefficients = {0.5, 0.5, 0.5, 0.5, 0.5, 0.5,};
+	Coefficients coefficients = {0, 1.7, 0, 1, 0.2, -1,};
 	double error;
 	int generation = 0;
 	
