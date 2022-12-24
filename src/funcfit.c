@@ -52,7 +52,7 @@ double quadratic_error(Point points[], int n, double a, double b, double c) {
     
     return sqrt(cumulative_error / n);
 }
-
+/*
 int main() {
     Point points[MAX_POINTS];
     int n = 0;
@@ -77,4 +77,4 @@ int main() {
     printf("\na = %f, b = %f, c = %f\n", a, b, c);
 
     return 0;
-}
+}*/

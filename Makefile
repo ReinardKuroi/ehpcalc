@@ -3,19 +3,19 @@ CFLAGS = -Wall -Wextra -O2
 LDFLAGS = 
 
 SOURCES = $(wildcard src/*.c)
-OBJECTS = $(SOURCES:.c=.o)
+OBJECTS = $(SOURCES:src/%.c=bin/%.o)
 
-EXECUTABLE = app
+EXECUTABLE = bin/$(notdir $(shell pwd))
 
 all: $(EXECUTABLE)
 
 $(EXECUTABLE): $(OBJECTS)
-    $(CC) $(LDFLAGS) $^ -o $@
+	$(CC) $(LDFLAGS) $^ -o $@
     
-%.o: %.c
-    $(CC) $(CFLAGS) -c $< -o $@
+bin/%.o: src/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
     
 .PHONY: clean
 
 clean:
-    rm -f $(EXECUTABLE) $(OBJECTS)
+	rm -f $(EXECUTABLE) $(OBJECTS)

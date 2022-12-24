@@ -3,23 +3,14 @@
 
 int main()
 {
-    int max_health;
-    int max_armour;
-    FILE *fp;
+    Stats stats;
     
-    printf("Enter max HP to test: ");
-    scanf("%d", &max_health);
-    printf("Enter max AR to test: ");
-    scanf("%d", &max_armour);
-    
-    fp = fopen("data.txt", "w");
-
-    for (int health = 1; health <= max_health; ++health) {
-        for (int armour = 0; armour <= max_armour; ++armour) {
-            fprintf(fp, "%d %d %.1f\n", health, armour, calculate_effective_health(health, armour));
-        }
-    }
-    fclose(fp);
+    printf("Enter HP to test: ");
+    scanf("%f", &stats.health);
+    printf("Enter AR to test: ");
+    scanf("%f", &stats.armour);
+    stats_calculate_effective_health(&stats);
+	stats_print(stats);
     
     return 0;
 }
