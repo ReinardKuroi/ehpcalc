@@ -3,8 +3,8 @@
 #include <math.h>
 #include "mlr.h"
 
-#define E 0.09
-#define LEARNING_RATE 0.01
+#define E 0.000001
+#define LEARNING_RATE 0.0001
 
 double predict(Coefficients c, double x, double y) {
 	return c.w1 * x * x + c.w2 * x + c.w3 * y * y + c.w4 * y + c.w5 * x * y + c.w6;
@@ -93,20 +93,28 @@ void adjust_coefficients_based_on_error(Coefficients *c, Point points[], int n) 
 }
 
 Coefficients fit_function(Point points[], int n) {
-	Coefficients coefficients = {0, 1.7, 0, 1, 0.2, -1,};
+	Coefficients coefficients = {
+		.5,
+		.5,
+		.5,
+		.5,
+		.5,
+		0,
+	};
 	double error;
+	double prev_error;
 	int generation = 0;
-	
+	error = calculate_mean_squared_error(coefficients, points, n);
+
 	do {
-		error = calculate_mean_squared_error(coefficients, points, n);
 		adjust_coefficients_based_on_error(&coefficients, points, n);
-		printf("gen %d: mse: %.4f\n", generation, error);
-		generation++;
-		if (error > 2147483647) {
-			printf("Exiting, MSE too high at %.1f\n", error);
-			break;
+		prev_error = error;
+		error = calculate_mean_squared_error(coefficients, points, n);
+		if (generation % 1000 == 0) {
+			printf("gen %d: mse: %.4f\n", generation/1000, error);
 		}
-	} while (error > E);
+		generation++;
+	} while (prev_error - error > E);
 		
 	return coefficients;
 }
