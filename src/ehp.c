@@ -1,9 +1,8 @@
 #include <stdio.h>
-#include <time.h>
-#include <stdlib.h>
 
 #include "structs.h"
 #include "health.h"
+#include "random.h"
 #include "mlr.h"
 
 #define MAX_POINTS 32768
@@ -11,7 +10,7 @@
 int this_data_is_for_testing() {
 	float percent;
 	float margin = 0.7;
-	percent = (float)rand()/(float)RAND_MAX;
+	percent = random_percent();
 	return percent > margin;
 }
 
@@ -52,7 +51,7 @@ int main()
 	int idx_training = 0;
 	int idx_testing = 0;
     
-	srand(time(NULL));
+	init_random();
 	
     printf("Enter HP range to test: ");
     scanf("%d", &max_hp);
