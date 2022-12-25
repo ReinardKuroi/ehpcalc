@@ -14,6 +14,8 @@ So here I am, writing a NN-esque thingy to fit a function and get my silly littl
 
 ### Current performance
 
+On a rather large data sample, it managed to output a rather easy to follow formula of `f(x, y) = 1.42(x + 0.52)^1.00 + 1.11(y + 0.53)^1.50`, which simplifies to `f(x, y) = 1.42x + 1.11(y + 0.53)^(3/2) + 0.74`, and that is good enough for how.
+
 ### HP 50 AR 20
 
 ##### Polynomial
