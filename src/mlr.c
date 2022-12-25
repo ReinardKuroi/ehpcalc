@@ -9,7 +9,7 @@
 #define E 0.000001
 #define LEARNING_RATE 0.000001
 
-typedef double (*derivative_t)(Coefficients, Point, int);
+typedef double (*derivative_t)(Coefficients, Point *, int);
 typedef double (*predict_t)(Coefficients, double, double);
 
 predict_t predict = &polynomial_predict;
