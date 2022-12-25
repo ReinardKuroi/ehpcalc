@@ -43,6 +43,11 @@ double calculate_mean_squared_error(Coefficients c, Point points[], int n) {
 	return cumulative_error;
 }
 
+double calculate_using_formula(Coefficients c, double x, double y) {
+	// Exposing the predict function basically
+	return predict(c, x, y);
+}
+
 void adjust_coefficients_based_on_error(Coefficients *c, Point points[], int n) {
 	Coefficients new_c;
 	
@@ -70,6 +75,7 @@ Coefficients fit_function(Point points[], int n) {
 	double error;
 	double prev_error;
 	int generation = 0;
+	
 	error = calculate_mean_squared_error(coefficients, points, n);
 
 	do {

@@ -9,4 +9,6 @@ double calculate_mean_squared_error(Coefficients c, Point points[], int n);
 
 Coefficients fit_function(Point points[], int n);
 
+double calculate_using_formula(Coefficients c, double x, double y);
+
 #endif
