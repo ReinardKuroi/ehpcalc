@@ -80,5 +80,32 @@ int main()
 	printf("\tMSE on training data: %.5f\n", training_mse);
 	printf("\tMSE on testing data: %.5f\n", testing_mse);
 	
+	Stats example_guardsman = {
+		.health = 4,
+		.armour = 2,
+	};
+	stats_calculate_effective_health(&example_guardsman);
+	Stats example_hammerhead = {
+		.health = 30,
+		.armour = 6,
+	};
+	stats_calculate_effective_health(&example_hammerhead);
+	Stats example_triarch_praetorian = {
+		.health = 10,
+		.armour = 5,
+	};
+	stats_calculate_effective_health(&example_triarch_praetorian);
+	
+	printf("\nSome arbitrary examples:\n");
+	printf("\nGuardsman ");
+	stats_print(example_guardsman);
+	printf("\tEHP(predicted): %.1f\n", calculate_using_formula(coefficients, example_guardsman.health, example_guardsman.armour));
+	printf("\nHammerhead ");
+	stats_print(example_hammerhead);
+	printf("\tEHP(predicted): %.1f\n", calculate_using_formula(coefficients, example_hammerhead.health, example_hammerhead.armour));
+	printf("\nTriarch Praetorian ");
+	stats_print(example_triarch_praetorian);
+	printf("\tEHP(predicted): %.1f\n", calculate_using_formula(coefficients, example_triarch_praetorian.health, example_triarch_praetorian.armour));
+	
     return 0;
 }
