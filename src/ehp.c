@@ -15,9 +15,33 @@ int this_data_is_for_testing() {
 	return percent > margin;
 }
 
+void generate_training_and_testing_data(Point *training_points, Point *testing_points, int *idx_training, int *idx_testing, int max_hp, int max_ar) {
+	Stats stats;
+	
+	for (int hp = 1; hp < max_hp; ++hp) {
+		for (int ar = 0; ar < max_ar; ++ar) {
+			stats.health = hp;
+			stats.armour = ar;
+			stats_calculate_effective_health(&stats);
+			if (this_data_is_for_testing()) {
+				testing_points[*idx_testing].x = stats.health;
+				testing_points[*idx_testing].y = stats.armour;
+				testing_points[*idx_testing].z = stats.effective_hp;
+				*idx_testing = *idx_testing + 1;
+			} else {
+				training_points[*idx_training].x = stats.health;
+				training_points[*idx_training].y = stats.armour;
+				training_points[*idx_training].z = stats.effective_hp;
+				*idx_training = *idx_training + 1;
+			}
+		}
+	}
+	
+	return;
+}
+
 int main()
 {
-    Stats stats;
 	int max_hp;
 	int max_ar;
 	Point training_points[MAX_POINTS];
@@ -36,24 +60,7 @@ int main()
     scanf("%d", &max_ar);
 	printf("Generating a list of possible stat points...");
 	
-	for (int hp = 1; hp < max_hp; ++hp) {
-		for (int ar = 0; ar < max_ar; ++ar) {
-			stats.health = hp;
-			stats.armour = ar;
-			stats_calculate_effective_health(&stats);
-			if (this_data_is_for_testing()) {
-				testing_points[idx_testing].x = stats.health;
-				testing_points[idx_testing].y = stats.armour;
-				testing_points[idx_testing].z = stats.effective_hp;
-				idx_testing++;
-			} else {
-				training_points[idx_training].x = stats.health;
-				training_points[idx_training].y = stats.armour;
-				training_points[idx_training].z = stats.effective_hp;
-				idx_training++;
-			}
-		}
-	}
+	generate_training_and_testing_data(training_points, testing_points, &idx_training, &idx_testing, max_hp, max_ar);
 	
 	printf("done\n");
 	printf("Fitting a function using generated point list...");
