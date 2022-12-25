@@ -2,10 +2,33 @@
 #include <stdlib.h>
 #include <math.h>
 
-#define PREDICTION_FUNCTION EXPONENTIAL
+#define PREDICTION_EXPONENTIAL
+#define DEBUG 0
 
 #include "structs.h"
 #include "mlr.h"
+
+typedef double (*derivative_t)(Coefficients, Point *, int);
+typedef double (*predict_t)(Coefficients, double, double);
+
+#ifdef PREDICTION_POLYNOMIAL
+	predict_t predict = &polynomial_predict;
+	derivative_t df_dw1 = &polynomial_df_dw1;
+	derivative_t df_dw2 = &polynomial_df_dw2;
+	derivative_t df_dw3 = &polynomial_df_dw3;
+	derivative_t df_dw4 = &polynomial_df_dw4;
+	derivative_t df_dw5 = &polynomial_df_dw5;
+	derivative_t df_dw6 = &polynomial_df_dw6;
+#endif
+#ifdef PREDICTION_EXPONENTIAL
+	predict_t predict = &exponential_predict;
+	derivative_t df_dw1 = &exponential_df_dw1;
+	derivative_t df_dw2 = &exponential_df_dw2;
+	derivative_t df_dw3 = &exponential_df_dw3;
+	derivative_t df_dw4 = &exponential_df_dw4;
+	derivative_t df_dw5 = &exponential_df_dw5;
+	derivative_t df_dw6 = &exponential_df_dw6;
+#endif
 
 #define E 0.000001
 #define LEARNING_RATE 0.000001
@@ -54,7 +77,7 @@ Coefficients fit_function(Point points[], int n) {
 		adjust_coefficients_based_on_error(&coefficients, points, n);
 		prev_error = error;
 		error = calculate_mean_squared_error(coefficients, points, n);
-		if (generation % 1000 == 0) {
+		if (generation % 1000 == 0 && DEBUG == 1) {
 			printf("gen %d: mse: %.4f\n", generation/1000, error);
 		}
 		generation++;

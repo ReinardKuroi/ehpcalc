@@ -1,4 +1,3 @@
-#include "structs.h"
 #include "polynomial.h"
 
 double polynomial_predict(Coefficients c, double x, double y) {

@@ -1,6 +1,5 @@
 #include <math.h>
 
-#include "structs.h"
 #include "exponential.h"
 
 double exponential_predict(Coefficients c, double x, double y) {
