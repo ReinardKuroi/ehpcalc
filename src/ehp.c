@@ -74,7 +74,13 @@ int main()
 	
 	fflush(stdout);
 	
+	if (testing_mse > 2<<16) {
+		printf("MSE exceeding at %'5f\nAborting...\n", testing_mse);
+		return 1;
+	}
+	
 	printf("For the given range of possible HP and AR combinations:\n");
+	print_predict_function(coefficients);
 	printf("\n\tCoefficients: %.2f %.2f %.2f %.2f %.2f %.2f\n",
 		coefficients.w1, coefficients.w2, coefficients.w3, coefficients.w4, coefficients.w5, coefficients.w6);
 	printf("\tMSE on training data: %.5f\n", training_mse);
