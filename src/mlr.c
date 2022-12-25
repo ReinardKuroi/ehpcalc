@@ -12,13 +12,13 @@
 typedef double (*derivative_t)(Coefficients, Point, int);
 typedef double (*predict_t)(Coefficients, double, double);
 
-predict_t predict = polynomial_predict;
-derivative_t df_dw1 = polynomial_df_dw1;
-derivative_t df_dw2 = polynomial_df_dw2;
-derivative_t df_dw3 = polynomial_df_dw3;
-derivative_t df_dw4 = polynomial_df_dw4;
-derivative_t df_dw5 = polynomial_df_dw5;
-derivative_t df_dw6 = polynomial_df_dw6;
+predict_t predict = &polynomial_predict;
+derivative_t df_dw1 = &polynomial_df_dw1;
+derivative_t df_dw2 = &polynomial_df_dw2;
+derivative_t df_dw3 = &polynomial_df_dw3;
+derivative_t df_dw4 = &polynomial_df_dw4;
+derivative_t df_dw5 = &polynomial_df_dw5;
+derivative_t df_dw6 = &polynomial_df_dw6;
 
 double calculate_mean_squared_error(Coefficients c, Point points[], int n) {
 	double error;
