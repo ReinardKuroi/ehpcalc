@@ -4,7 +4,7 @@
 
 #define PREDICTION_EXPONENTIAL
 #define DEBUG 1
-#define E 0.0000001
+#define E 0.00003
 #define LEARNING_RATE 0.000001
 
 #include "structs.h"
