@@ -72,6 +72,8 @@ int main()
 	
 	printf("done\n");
 	
+	fflush(stdout);
+	
 	printf("For the given range of possible HP and AR combinations:\n");
 	printf("\n\tCoefficients: %.2f %.2f %.2f %.2f %.2f %.2f\n",
 		coefficients.w1, coefficients.w2, coefficients.w3, coefficients.w4, coefficients.w5, coefficients.w6);

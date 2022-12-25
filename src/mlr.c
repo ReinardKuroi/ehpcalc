@@ -3,7 +3,9 @@
 #include <math.h>
 
 #define PREDICTION_EXPONENTIAL
-#define DEBUG 0
+#define DEBUG 1
+#define E 0.0000001
+#define LEARNING_RATE 0.000001
 
 #include "structs.h"
 #include "mlr.h"
@@ -29,9 +31,6 @@ typedef double (*predict_t)(Coefficients, double, double);
 	derivative_t df_dw5 = &exponential_df_dw5;
 	derivative_t df_dw6 = &exponential_df_dw6;
 #endif
-
-#define E 0.000001
-#define LEARNING_RATE 0.000001
 
 double calculate_mean_squared_error(Coefficients c, Point points[], int n) {
 	double error;
@@ -81,7 +80,7 @@ Coefficients fit_function(Point points[], int n) {
 			printf("gen %d: mse: %.4f\n", generation/1000, error);
 		}
 		generation++;
-	} while (prev_error - error > E);
+	} while (fabs(prev_error - error) > E);
 		
 	return coefficients;
 }
