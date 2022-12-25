@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
+
 #include "health.h"
 #include "mlr.h"
+#include "structs.h"
 
 #define MAX_POINTS 32768
 
