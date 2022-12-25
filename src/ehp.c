@@ -68,7 +68,7 @@ int main()
 	
 	printf("For the given range of possible HP and AR combinations:\n");
 	printf("\n\tMax HP: %d\n\tMax AR: %d\n", max_hp, max_ar);
-	printf("\n\tFormula: %.1f * x * x + %.1f * x + %.1f * y * y + %.1f * y + %.1f * x * y + %.1f\n",
+	printf("\n\tCoefficients: %.2f %.2f %.2f %.2f %.2f %.2f\n",
 		coefficients.w1, coefficients.w2, coefficients.w3, coefficients.w4, coefficients.w5, coefficients.w6);
 	printf("\tMSE on testing data: %.5f", mse);
 	
