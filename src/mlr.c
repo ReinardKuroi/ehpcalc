@@ -8,6 +8,7 @@
 #define LEARNING_RATE 0.000001
 
 #include "structs.h"
+#include "random.h"
 #include "mlr.h"
 
 typedef double (*derivative_t)(Coefficients, Point *, int);
@@ -74,16 +75,19 @@ void adjust_coefficients_based_on_error(Coefficients *c, Point points[], int n) 
 
 Coefficients fit_function(Point points[], int n) {
 	Coefficients coefficients = {
-		.5,
-		.5,
-		.5,
-		.5,
-		.5,
-		.5,
+		random_ball_range(),
+		random_ball_range(),
+		random_ball_range(),
+		random_ball_range(),
+		random_ball_range(),
+		random_ball_range(),
 	};
 	double error;
 	double prev_error;
 	int generation = 0;
+	
+	printf("\n\tInit random coefficients: %.2f %.2f %.2f %.2f %.2f %.2f\n",
+		coefficients.w1, coefficients.w2, coefficients.w3, coefficients.w4, coefficients.w5, coefficients.w6);
 	
 	error = calculate_mean_squared_error(coefficients, points, n);
 
